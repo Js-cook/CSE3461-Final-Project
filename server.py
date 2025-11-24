@@ -2,7 +2,6 @@ from socket import *
 import threading
 
 clients = []
-client_threads = []
 
 client_connection_lock = threading.Lock()
 
@@ -41,7 +40,6 @@ def main():
 
         # Create thread and add it to list for management (set Daemon to true so all client threads terminate w/ main on shutdown)
         new_thread = threading.Thread(target=client_handler, args=(connection_socket,), daemon=True)
-        client_threads.append(new_thread)
         new_thread.start()
 
 if __name__ == "__main__":
