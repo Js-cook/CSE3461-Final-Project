@@ -5,6 +5,10 @@ import threading
 
 # Send a message
 def messageSendHandler(message, clientSocket):
+    # Send Username to server
+    username = input("Enter your username: ")
+    clientSocket.send(username.encode())
+
     while True:
         message = input("Input your message:")
         clientSocket.send(message.encode())
@@ -17,7 +21,7 @@ def messageReceiveHandler(clientSocket):
         if len(receivedMessage) == 0:
             break
 
-        print(f"\n{receivedMessage}")
+        print(f"\n Received Message: {receivedMessage}")
 
 
 # Want to essentially create a message sender and a message receiver
